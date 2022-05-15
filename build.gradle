@@ -15,9 +15,10 @@ repositories {
 project.ext.local=true
 
 dependencies {
-	if(project.hasProperty('local')){
+	if (project.hasProperty('local')) {
 		dependencies {
-			compileClasspath('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+			implementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+
 		}
 	}
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'

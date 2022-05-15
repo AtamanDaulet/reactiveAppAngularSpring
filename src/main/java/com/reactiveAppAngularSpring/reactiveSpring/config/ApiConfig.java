@@ -2,6 +2,7 @@ package com.reactiveAppAngularSpring.reactiveSpring.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
@@ -20,5 +21,9 @@ public class ApiConfig {
 						.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true);
 		return objectMapper;
 	}
-	git push -u origin main
+
+	@Bean
+	public ObjectWriter objectWriter(ObjectMapper objectMapper){
+		return objectMapper.writerWithDefaultPrettyPrinter();
+	}
 }
