@@ -1,0 +1,4 @@
+npm install -g @angular/cli
+ng new reservation-app
+cd reservation-app
+ng serve
