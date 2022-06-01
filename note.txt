@@ -9,3 +9,6 @@ Run command-line as an Administrator
 
 netstat -ano | findstr :8080
 taskkill /PID 20620 /F
+
+
+ng generate service reservation
