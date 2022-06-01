@@ -2,6 +2,7 @@ package com.reactiveAppAngularSpring.reactiveSpring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -12,7 +13,7 @@ import reactor.core.publisher.Mono;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
-@SpringBootApplication()//exclude = EmbeddedMongoAutoConfiguration.class
+@SpringBootApplication(exclude = EmbeddedMongoAutoConfiguration.class)
 public class ReactiveSpringApplication {
 
 	public static void main(String[] args) {

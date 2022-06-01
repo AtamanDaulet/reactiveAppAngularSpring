@@ -2,3 +2,10 @@ npm install -g @angular/cli
 ng new reservation-app
 cd reservation-app
 ng serve
+
+
+/****** Stop port ******/
+Run command-line as an Administrator
+
+netstat -ano | findstr :8080
+taskkill /PID 20620 /F
