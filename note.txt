@@ -10,5 +10,9 @@ Run command-line as an Administrator
 netstat -ano | findstr :8080
 taskkill /PID 20620 /F
 
-
+**** to create angular components
 ng generate service reservation
+
+
+*****************to execute test
+./gradlew clean test

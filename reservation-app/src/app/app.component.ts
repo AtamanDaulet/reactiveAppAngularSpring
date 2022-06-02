@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import{ReservationService} from './reservation.service';
+import{ReservationService, ReservationRequest, Reservation} from './reservation.service';
 
 
 @Component({
@@ -16,10 +16,11 @@ export class AppComponent {
 
   rooms:Room[] = [];
   roomSearchForm!:FormGroup;
-  currentCheckInVal: string|undefined;
-  currentCheckOutVal: string|undefined;
-  currentPrice: number|undefined;
-  currentRoomNumber: number|undefined;
+  currentCheckInVal!: string;
+  currentCheckOutVal!: string;
+  currentPrice!: number;
+  currentRoomNumber!: number;
+  currentReservations!: Reservation[];
 
   ngOnInit() {
     this.roomSearchForm = new FormGroup({
@@ -38,6 +39,10 @@ export class AppComponent {
         this.currentPrice = Number(roomValues[1]);
       }
 
+      console.log(this.currentRoomNumber);
+      console.log(this.currentCheckInVal);
+      console.log(this.currentCheckOutVal);
+      console.log(this.currentPrice);
 
     });
 
@@ -45,7 +50,29 @@ export class AppComponent {
       new Room("122","122","180"),
       new Room("322","322","200")
     ];
+
+    this.getCurrentReservation();
   }
+
+  getCurrentReservation(){
+    this.reservationService.getReservations().subscribe(getResults =>{
+      console.log(getResults);
+      this.currentReservations=getResults;
+    });
+  }
+
+  createReservation(){
+    this.reservationService.createReservation(
+      new ReservationRequest(this.currentRoomNumber,
+                           this.currentCheckInVal,
+                           this.currentCheckOutVal,
+                           this.currentPrice)).subscribe(postResult => {
+                                console.log(postResult)
+                                this.getCurrentReservation();
+                                })
+
+  }
+
 }
 
 export class Room {
